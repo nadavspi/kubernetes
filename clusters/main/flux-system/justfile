@@ -1,10 +1,18 @@
-setup: bootstrap sops
+setup host: 
+  just set-token {{host}}
+  just bootstrap 
+  just sops
+
+set-token host:
+  ssh {{host}} "sudo cat /etc/rancher/k3s/k3s.yaml" | \
+    sed --expression 's/127\.0\.0\.1/{{host}}/' \
+    > ~/.kube/config
 
 bootstrap:
   #!/usr/bin/env bash
   set -euxo pipefail
 
-  export GITHUB_TOKEN=$(op item get --vault cluster-main lcejxmrz4q6f7kx2n5tlz4jzrq --field password)
+  export GITHUB_TOKEN=$(op read "op://cluster-main/khjznpny7hv2gziibyiyit27fq/password")
   flux bootstrap github \
   --owner=nadavspi \
   --repository=kubernetes \
@@ -16,3 +24,4 @@ sops:
        kubectl create secret generic sops-age \
        --namespace=flux-system \
        --from-file=age.agekey=/dev/stdin
+
