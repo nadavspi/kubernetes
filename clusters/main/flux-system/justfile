@@ -1,10 +1,18 @@
+setup: bootstrap sops
+
 bootstrap:
   #!/usr/bin/env bash
   set -euxo pipefail
 
-  export GITHUB_TOKEN=$(op item get --vault cluster lcejxmrz4q6f7kx2n5tlz4jzrq --field password)
+  export GITHUB_TOKEN=$(op item get --vault cluster-main lcejxmrz4q6f7kx2n5tlz4jzrq --field password)
   flux bootstrap github \
   --owner=nadavspi \
   --repository=kubernetes \
   --personal \
   --path=clusters/main
+
+sops:
+  op read "op://cluster-main/sops-age/age/private key" | \
+       kubectl create secret generic sops-age \
+       --namespace=flux-system \
+       --from-file=age.agekey=/dev/stdin
