@@ -1,0 +1,10 @@
+bootstrap:
+  #!/usr/bin/env bash
+  set -euxo pipefail
+
+  export GITHUB_TOKEN=$(op item get --vault cluster lcejxmrz4q6f7kx2n5tlz4jzrq --field password)
+  flux bootstrap github \
+  --owner=nadavspi \
+  --repository=kubernetes \
+  --personal \
+  --path=clusters/main
