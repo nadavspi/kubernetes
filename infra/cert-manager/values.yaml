@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cert-manager-values
+  namespace: infra-system
+data:
+  values.yaml: |-
+    # https://github.com/cert-manager/cert-manager/blob/master/deploy/charts/cert-manager/values.yaml
+    installCRDs: true
