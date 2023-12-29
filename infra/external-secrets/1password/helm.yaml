@@ -35,7 +35,7 @@ spec:
               repository: 1password/connect-api
               tag: &tag 1.7.2
             env:
-              - name: &OP_SESSION
+              OP_SESSION:
                 valueFrom:
                   secretKeyRef:
                     name: connect-server-credentials
@@ -45,7 +45,11 @@ spec:
               repository: 1password/connect-sync
               tag: *tag
             env:
-              - name: *OP_SESSION
+              OP_SESSION:
+                valueFrom:
+                  secretKeyRef:
+                    name: connect-server-credentials
+                  key: 1password-credentials.json
     service:
       api:
         ports:
