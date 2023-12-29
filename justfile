@@ -133,10 +133,10 @@ helm name url:
 
 scaffold name url:
   # add --namespace infra-system
-  mkdir -p apps/{{name}}
-  just namespace {{name}} > apps/{{name}}/namespace.yaml
+  mkdir -p {{name}}
+  just namespace {{name}} > {{name}}/namespace.yaml
   just helm {{name}} {{url}}
-  just configmap {{name}} > apps/{{name}}/values.yaml
+  just configmap {{name}} > {{name}}/values.yaml
 
 hurry name:
   flux suspend helmrelease {{name}} -n {{name}} \
