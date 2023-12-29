@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
 - helm.yaml
 - namespace.yaml
-- values.yaml
 - test-secret.yaml
