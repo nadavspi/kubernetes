@@ -148,8 +148,8 @@ sops-encrypt file:
     --in-place \
     {{file}}
 
-warnings:
-  kubectl get events -n flux-system --field-selector type=Warning
+warnings namespace="flux-system":
+  kubectl get events -n {{namespace}} --field-selector type=Warning
 
 ready:
   flux get all -A --status-selector ready=false
