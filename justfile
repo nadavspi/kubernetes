@@ -126,16 +126,16 @@ helmrelease name:
       valuesKey: values.yaml
   EOF
 
+helm name url:
+  just helmrepository {{name}} {{url}} > helm.yaml
+  echo "---" >> helm.yaml
+  just helmrelease {{name}} >> helm.yaml
+
 scaffold name url:
   # add --namespace infra-system
   mkdir -p apps/{{name}}
   just namespace {{name}} > apps/{{name}}/namespace.yaml
-
-  just helmrepository {{name}} {{url}} > apps/{{name}}/helm.yaml
-  echo "---" >> apps/{{name}}/helm.yaml
-  just helmrelease {{name}} >> apps/{{name}}/helm.yaml
-
-  just kustomization {{name}} > apps/{{name}}/ks.yaml
+  just helm {{name}} {{url}}
   just configmap {{name}} > apps/{{name}}/values.yaml
 
 hurry name:
