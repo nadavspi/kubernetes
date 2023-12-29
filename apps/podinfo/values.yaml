@@ -6,3 +6,5 @@ metadata:
   namespace: podinfo
 data:
   values.yaml: |-
+    service:
+      type: LoadBalancer
