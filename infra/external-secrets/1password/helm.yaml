@@ -39,7 +39,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: connect-server-credentials
-                  key: 1password-credentials.json
+                    key: 1password-credentials.json
           sync:
             image:
               repository: docker.io/1password/connect-sync
@@ -49,7 +49,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: connect-server-credentials
-                  key: 1password-credentials.json
+                    key: 1password-credentials.json
     service:
       main:
         ports:
