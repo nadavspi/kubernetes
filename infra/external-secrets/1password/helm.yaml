@@ -35,6 +35,7 @@ spec:
               repository: docker.io/1password/connect-api
               tag: &tag 1.7.2
             env:
+              XDG_DATA_HOME: &configDir /config
               OP_SESSION:
                 valueFrom:
                   secretKeyRef:
@@ -45,6 +46,7 @@ spec:
               repository: docker.io/1password/connect-sync
               tag: *tag
             env:
+              XDG_DATA_HOME: *configDir
               OP_SESSION:
                 valueFrom:
                   secretKeyRef:
@@ -58,12 +60,9 @@ spec:
     persistence:
       data:
         enabled: true
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: nfs-subdir
+        type: emptyDir
         globalMounts:
-          - path: /home/opuser/.op/data
+          - path: *configDir
             readOnly: false
       # credentials:
       #   enabled: true
