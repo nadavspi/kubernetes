@@ -32,7 +32,7 @@ spec:
         containers:
           api:
             image:
-              repository: 1password/connect-api
+              repository: docker.io/1password/connect-api
               tag: &tag 1.7.2
             env:
               OP_SESSION:
@@ -42,7 +42,7 @@ spec:
                   key: 1password-credentials.json
           sync:
             image:
-              repository: 1password/connect-sync
+              repository: docker.io/1password/connect-sync
               tag: *tag
             env:
               OP_SESSION:
