@@ -25,3 +25,10 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: ingress-nginx
+  values:
+    ingressClassResource:
+      name: nginx
+      enabled: true
+      # set as default ingressClass for the cluster
+      default: true
+
