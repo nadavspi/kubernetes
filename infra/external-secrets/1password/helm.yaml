@@ -34,10 +34,18 @@ spec:
             image:
               repository: 1password/connect-api
               tag: &tag 1.7.2
+            env:
+              - name: &OP_SESSION
+                valueFrom:
+                  secretKeyRef:
+                    name: connect-server-credentials
+                  key: 1password-credentials.json
           sync:
             image:
               repository: 1password/connect-sync
               tag: *tag
+            env:
+              - name: *OP_SESSION
     service:
       api:
         ports:
@@ -53,10 +61,11 @@ spec:
         globalMounts:
           - path: /home/opuser/.op/data
             readOnly: false
-      credentials:
-        enabled: true
-        type: secret
-        name: 1password-credentials.json
-        globalMounts:
-          - path: /home/opuser/.op/1password-credentials.json
-            readOnly: true
+      # credentials:
+      #   enabled: true
+      #   type: secret
+      #   name: connect-server-credentials
+      #   globalMounts:
+      #     - path: /home/opuser/.op/1password-credentials.json
+      #       subPath: 1password-credentials.json
+      #       readOnly: true
