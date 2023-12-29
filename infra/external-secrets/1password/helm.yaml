@@ -30,7 +30,7 @@ spec:
         replicas: 1
         strategy: RollingUpdate
         containers:
-          api:
+          main:
             image:
               repository: docker.io/1password/connect-api
               tag: &tag 1.7.2
@@ -51,7 +51,7 @@ spec:
                     name: connect-server-credentials
                   key: 1password-credentials.json
     service:
-      api:
+      main:
         ports:
           http:
             port: 8080
