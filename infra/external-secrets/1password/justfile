@@ -1,0 +1,2 @@
+credentials:
+  op read "op://cluster-main/1password-connect credentials/1password-credentials.json"| base64 | tr -d \\n

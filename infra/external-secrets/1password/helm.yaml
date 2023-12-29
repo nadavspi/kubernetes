@@ -1,0 +1,62 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: 1password-connect
+  namespace: infra-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    # https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
+    controllers:
+      main:
+        replicas: 1
+        strategy: RollingUpdate
+        containers:
+          api:
+            image:
+              repository: 1password/connect-api
+              tag: &tag 1.7.2
+          sync:
+            image:
+              repository: 1password/connect-sync
+              tag: *tag
+    service:
+      api:
+        ports:
+          http:
+            port: 8080
+    persistence:
+      data:
+        enabled: true
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: nfs-subdir
+        globalMounts:
+          - path: /home/opuser/.op/data
+            readOnly: false
+      credentials:
+        enabled: true
+        type: secret
+        name: 1password-credentials.json
+        globalMounts:
+          - path: /home/opuser/.op/1password-credentials.json
+            readOnly: true
