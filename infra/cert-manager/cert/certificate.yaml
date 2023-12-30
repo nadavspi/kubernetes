@@ -7,5 +7,6 @@ spec:
   secretName: nadav-is-tls
   issuerRef:
     name: letsencrypt-staging
+    kind: ClusterIssuer
   dnsNames:
   - '*.nadav.is'
