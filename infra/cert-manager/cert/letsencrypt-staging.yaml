@@ -6,7 +6,7 @@ metadata:
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: softly redacted 
+    email: ${EMAIL}
 
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
@@ -16,7 +16,7 @@ spec:
     - selector: {}
       dns01:
         cloudflare:
-          email: softly redacted
+          email: ${EMAIL}
           # !! Remember to create a k8s secret before
           # kubectl create secret generic cloudflare-api-key-secret
           apiTokenSecretRef:
