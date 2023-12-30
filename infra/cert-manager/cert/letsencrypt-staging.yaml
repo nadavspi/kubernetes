@@ -13,9 +13,7 @@ spec:
       name: letsencrypt-staging
 
     solvers:
-    - selector:
-        dnsNames:
-        - nadav.is
+    - selector: {}
       dns01:
         cloudflare:
           email: softly redacted
