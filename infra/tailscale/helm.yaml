@@ -25,6 +25,9 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: tailscale-operator
+  values:
+    operatorConfig:
+      hostname: "cluster"
   valuesFrom:
     - kind: Secret
       name: tailscale-oauth-client
