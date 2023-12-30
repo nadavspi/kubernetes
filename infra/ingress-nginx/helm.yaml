@@ -25,7 +25,9 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: ingress-nginx
-  valuesFrom:
-  - kind: ConfigMap
-    name: ingress-nginx-values
-    valuesKey: values.yaml
+  values:
+    controller:
+      ingressClassResource:
+        default: true
+      extraArgs:
+        default-ssl-certificate: "infra-system/nadav-is-tls-prod"
