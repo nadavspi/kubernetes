@@ -19,6 +19,6 @@ spec:
           email: softly redacted
           # !! Remember to create a k8s secret before
           # kubectl create secret generic cloudflare-api-key-secret
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-token
             key: token
