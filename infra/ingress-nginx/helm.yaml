@@ -27,6 +27,8 @@ spec:
   releaseName: ingress-nginx
   values:
     controller:
+      annotations:
+        tailscale.com/expose: "true"
       ingressClassResource:
         default: true
       extraArgs:
