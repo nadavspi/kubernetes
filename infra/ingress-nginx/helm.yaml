@@ -25,11 +25,7 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: ingress-nginx
-  values:
-    controller:
-      ingressClassResource:
-        name: nginx
-        enabled: true
-        # set as default ingressClass for the cluster
-        default: true
-
+  valuesFrom:
+  - kind: ConfigMap
+    name: ingress-nginx-values
+    valuesKey: values.yaml
