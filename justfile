@@ -148,7 +148,7 @@ sops-encrypt file:
     --in-place \
     {{file}}
 
-warnings namespace="flux-system":
+warnings namespace="infra-system":
   kubectl get events -n {{namespace}} --field-selector type=Warning
 
 ready:
