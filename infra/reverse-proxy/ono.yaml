@@ -1,0 +1,47 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ono
+  namespace: reverse-proxy
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host ono.${SECRET_DOMAIN}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ono
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - *host
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: ono
+  namespace: reverse-proxy
+subsets:
+  - addresses:
+      - ip: ${ONO_IP}
+    ports:
+      - name: http
+        port: 8080
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ono
+  namespace: reverse-proxy
+spec:
+  ports:
+    - name: http
+      port: 80
+  type: ClusterIP
+
