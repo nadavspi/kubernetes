@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: nadav-is
+  name: nadav-is-tls
   namespace: infra-system
 spec:
-  secretName: nadav-is-tls
+  secretName: nadav-is-tls-prod
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
   - '*.nadav.is'
