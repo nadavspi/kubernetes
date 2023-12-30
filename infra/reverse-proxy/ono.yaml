@@ -5,7 +5,7 @@ metadata:
   name: ono
   namespace: reverse-proxy
 spec:
-  ingressClassName: internal
+  ingressClassName: nginx
   rules:
     - host: &host ono.${SECRET_DOMAIN}
       http:
