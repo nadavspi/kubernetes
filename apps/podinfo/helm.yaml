@@ -38,4 +38,7 @@ spec:
           paths:
             - path: /
               pathType: ImplementationSpecific
+      tls: 
+        - hosts:
+          - podinfo.nadav.is
 
