@@ -12,7 +12,9 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: k8s-gateway
-  namespace: infra-system
+  namespace: k8s-gateway
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: "${K8S_DNS_IP}"
 spec:
   chart:
     spec:
