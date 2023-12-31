@@ -157,3 +157,5 @@ ready:
 ssh host="fedora":
   kubectl exec -it deployments/{{host}} -- sh
 
+sync-cluster-secrets:
+  kubectl annotate es -n flux-system cluster-secrets force-sync=$(date +%s) --overwrite
