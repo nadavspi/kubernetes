@@ -30,6 +30,7 @@ spec:
       service:
         annotations:
           tailscale.com/expose: "true"
+          tailscale.com/hostname: "cluster-ingress"
       ingressClassResource:
         default: true
       extraArgs:
