@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx
+  namespace: tailscale
+spec:
+  defaultBackend:
+    service:
+      name: ingress-nginx-controller
+      port:
+        name: https
+  ingressClassName: tailscale
+  tls:
+    - hosts: 
+      - test-ingress
