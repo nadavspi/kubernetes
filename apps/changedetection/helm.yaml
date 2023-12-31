@@ -72,10 +72,10 @@ spec:
               - *host
     persistence:
       config:
+        enabled: false
+      datastore:
         enabled: true
-        type: nfs-subdir
-        advancedMounts:
-          main:
-            main:
-              - path: /datastore
-
+        type: persistentVolumeClaim
+        storageClass: nfs-subdir
+        accessMode: ReadWriteOnce
+        size: 1Gi
