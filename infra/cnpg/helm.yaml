@@ -1,0 +1,27 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: cnpg
+  namespace: flux-system
+spec:
+  interval: 5m
+  url: https://cloudnative-pg.github.io/charts
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: cnpg
+  namespace: cnpg-system
+spec:
+  chart:
+    spec:
+      chart: cloudnative-pg # the actual name of the chart
+      version: "0.20.0"
+      sourceRef:
+        kind: HelmRepository
+        name: cnpg # the name of the HelmRepository
+        namespace: flux-system
+  interval: 15m
+  timeout: 5m
+  releaseName: cnpg
