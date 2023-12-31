@@ -27,7 +27,7 @@ spec:
     # https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
     controllers:
       main:
-        replicas: 1
+        replicas: 2
         strategy: RollingUpdate
         containers:
           main:
@@ -70,11 +70,3 @@ spec:
         globalMounts:
           - path: *configDir
             readOnly: false
-      # credentials:
-      #   enabled: true
-      #   type: secret
-      #   name: connect-server-credentials
-      #   globalMounts:
-      #     - path: /home/opuser/.op/1password-credentials.json
-      #       subPath: 1password-credentials.json
-      #       readOnly: true

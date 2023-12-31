@@ -27,6 +27,7 @@ spec:
   releaseName: ingress-nginx
   values:
     controller:
+      replicaCount: 2
       service:
         annotations:
           tailscale.com/expose: "true"
