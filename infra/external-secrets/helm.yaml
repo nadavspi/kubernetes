@@ -25,3 +25,5 @@ spec:
   interval: 15m
   timeout: 5m
   releaseName: external-secrets
+  values:
+    replicaCount: 2

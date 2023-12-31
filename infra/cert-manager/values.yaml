@@ -7,4 +7,16 @@ metadata:
 data:
   values.yaml: |-
     # https://github.com/cert-manager/cert-manager/blob/master/deploy/charts/cert-manager/values.yaml
+    replicaCount: 2
     installCRDs: true
+    dns01RecursiveNameservers: 1.1.1.1:53,9.9.9.9:53
+    dns01RecursiveNameserversOnly: true
+    podDnsPolicy: None
+    podDnsConfig:
+      nameservers:
+        - "1.1.1.1"
+        - "9.9.9.9"
+    webhook:
+      replicaCount: 2
+    cainjector:
+      replicaCount: 2

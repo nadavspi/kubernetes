@@ -6,8 +6,8 @@ metadata:
   namespace: infra-system
 data:
   values.yaml: |-
-    replicaCount: 1
-    strategyType: Recreate
+    replicaCount: 2
+    strategyType: RollingUpdate
 
     image:
       repository: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner

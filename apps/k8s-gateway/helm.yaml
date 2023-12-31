@@ -28,5 +28,6 @@ spec:
   timeout: 5m
   releaseName: k8s-gateway
   values:
+    replicaCount: 2
     domain: "${SECRET_DOMAIN}"
     tls: 1
